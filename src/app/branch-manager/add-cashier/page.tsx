@@ -21,38 +21,44 @@ import {
 } from "@/components/ui/select";
 import PageTitle from "@/components/PageTitle";
 import { CardContent } from "@/components/Card";
-import axios from 'axios';
+import axios from "axios";
 
 const formSchema = z.object({
-  itemName: z.string(),
-  itemCode: z.string(),
-  quantity: z.string(),
-  supply: z.string(),
-  date: z.string(),
-  unitPrice: z.string(),
-  sellPrice: z.string(),
+  cashierId: z.string(),
+  cashierFirstName: z.string(),
+  cashierLastName: z.string(),
+  cashierEmail: z.string(),
+  cashierAddress: z.string(),
+  cashierPhone: z.string(),
+  cashierDoB: z.string(),
+  cashierGender: z.string(),
+  cashierBranch: z.string(),
 });
 
 export default function Home() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      itemName: "",
-      itemCode: "",
-      quantity: "",
-      supply: "",
-      date: "",
-      unitPrice: "",
-      sellPrice: "",
+      cashierId: "",
+      cashierFirstName: "",
+      cashierLastName: "",
+      cashierEmail: "",
+      cashierAddress: "",
+      cashierPhone: "",
+      cashierDoB: "",
+      cashierGender: "",
+      cashierBranch: "",
     },
   });
 
   const handleSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const response = await axios.post('http://localhost:3002/book', values);
-      console.log('Book created:', response.data);
+      const response = await axios.post('http://localhost:3000/cashier', values);
+      console.log('Cashier added:', response.data);
+      alert(`${response.data.cashierFirstName} added as cashier`);
     } catch (error) {
-      console.error('Error creating book:', error);
+      console.error('Error creating cashier:', error);
+      alert('Error creating cashier');
     }
   };
 
@@ -82,13 +88,13 @@ export default function Home() {
               >
                 <FormField
                   control={form.control}
-                  name="itemName"
+                  name="cashierId"
                   render={({ field }) => {
                     return (
                       <FormItem>
-                        <FormLabel className="font-bold" >Item Name</FormLabel>
+                        <FormLabel className="font-bold">Cashier Id</FormLabel>
                         <FormControl>
-                          <Input placeholder="Item Name" {...field} />
+                          <Input placeholder="Cashier Id" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -97,13 +103,13 @@ export default function Home() {
                 />
                 <FormField
                   control={form.control}
-                  name="itemCode"
+                  name="cashierFirstName"
                   render={({ field }) => {
                     return (
                       <FormItem>
-                        <FormLabel className="font-bold" >Item Code</FormLabel>
+                        <FormLabel className="font-bold">Cashier First Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="Item Code" {...field} />
+                          <Input placeholder="First Name" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -112,13 +118,13 @@ export default function Home() {
                 />
                 <FormField
                   control={form.control}
-                  name="quantity"
+                  name="cashierLastName"
                   render={({ field }) => {
                     return (
                       <FormItem>
-                        <FormLabel className="font-bold" >Quantity</FormLabel>
+                        <FormLabel className="font-bold">Last Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="Quantity" {...field} />
+                          <Input placeholder="Last Name" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -127,13 +133,13 @@ export default function Home() {
                 />
                 <FormField
                   control={form.control}
-                  name="supply"
+                  name="cashierEmail"
                   render={({ field }) => {
                     return (
                       <FormItem>
-                        <FormLabel className="font-bold" >Supply</FormLabel>
+                        <FormLabel className="font-bold">Cashier Email</FormLabel>
                         <FormControl>
-                          <Input placeholder="Supply" {...field} />
+                          <Input placeholder="Email" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -142,13 +148,13 @@ export default function Home() {
                 />
                 <FormField
                   control={form.control}
-                  name="date"
+                  name="cashierAddress"
                   render={({ field }) => {
                     return (
                       <FormItem>
-                        <FormLabel className="font-bold" >Date</FormLabel>
+                        <FormLabel className="font-bold">Cashier Address</FormLabel>
                         <FormControl>
-                          <Input placeholder="Date" {...field} />
+                          <Input placeholder="Address" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -157,13 +163,13 @@ export default function Home() {
                 />
                 <FormField
                   control={form.control}
-                  name="unitPrice"
+                  name="cashierPhone"
                   render={({ field }) => {
                     return (
                       <FormItem>
-                        <FormLabel className="font-bold">Unit Price</FormLabel>
+                        <FormLabel className="font-bold">Cashier Phone Number</FormLabel>
                         <FormControl>
-                          <Input placeholder="Unit Price" {...field} />
+                          <Input placeholder="Phone Number" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -172,13 +178,43 @@ export default function Home() {
                 />
                 <FormField
                   control={form.control}
-                  name="sellPrice"
+                  name="cashierDoB"
                   render={({ field }) => {
                     return (
                       <FormItem>
-                        <FormLabel className="font-bold">Sell Price</FormLabel>
+                        <FormLabel className="font-bold">Cashier Date of Birth</FormLabel>
                         <FormControl>
-                          <Input placeholder="Sell Price" {...field} />
+                          <Input placeholder="Date of Birth" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    );
+                  }}
+                />
+                <FormField
+                  control={form.control}
+                  name="cashierGender"
+                  render={({ field }) => {
+                    return (
+                      <FormItem>
+                        <FormLabel className="font-bold">Cashier Gender</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Gender" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    );
+                  }}
+                />
+                <FormField
+                  control={form.control}
+                  name="cashierBranch"
+                  render={({ field }) => {
+                    return (
+                      <FormItem>
+                        <FormLabel className="font-bold">Cashier Branch</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Branch" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>

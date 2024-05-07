@@ -12,25 +12,25 @@ export function SubNav({ handleCategoryChange, className }: SubNavProps) {
     <CardContent className="mb-5">
       <nav className={cn("grid grid-cols-2 gap-4 lg:grid-cols-4 lg:space-x-6 ", className)}>
         <button
-          onClick={() => handleCategoryChange("snacks")}
+          onClick={() => handleCategoryChange("Snacks")}
           className="text-sm font-bold transition-colors hover:text-primary"
         >
           Snacks & Confectionery
         </button>
         <button
-          onClick={() => handleCategoryChange("babyProducts")}
+          onClick={() => handleCategoryChange("BabyProducts")}
           className="text-sm font-bold text-muted-foreground transition-colors hover:text-primary"
         >
           Baby Products
         </button>
         <button
-          onClick={() => handleCategoryChange("fashion")}
+          onClick={() => handleCategoryChange("Fashion")}
           className="text-sm font-bold text-muted-foreground transition-colors hover:text-primary"
         >
           Fashion
         </button>
         <button
-          onClick={() => handleCategoryChange("stationary")}
+          onClick={() => handleCategoryChange("Stationary")}
           className="text-sm font-bold text-muted-foreground transition-colors hover:text-primary"
         >
           Stationary

@@ -11,18 +11,21 @@ const cardData: CardProps[] = [
   {
     label: "Total Revenue",
     amount: "45,231.89",
+    code:'Abc12',
     discription: "+20.1% from last month",
     icon: DollarSign,
   },
   {
     label: "Subscriptions",
     amount: "2350",
+    code:'Abc12',
     discription: "+180.1% from last month",
     icon: Users,
   },
   {
     label: "Sales",
     amount: "12,234",
+    code:'Abc12',
     discription: "+19% from last month",
     icon: CreditCard,
   },
@@ -30,6 +33,7 @@ const cardData: CardProps[] = [
     label: "Active Now",
     amount: "573",
     discription: "+201 since last hour",
+    code:'Abc12',
     icon: Activity,
   },
 ];
@@ -74,6 +78,8 @@ export default function Home() {
             discription={d.discription}
             icon={d.icon}
             label={d.label}
+            code={d.amount}
+            
           />
         ))}
       </section>

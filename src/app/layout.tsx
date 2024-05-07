@@ -10,7 +10,6 @@ import BmanagerSideNavbar from "@/components/BmanagerSideNavbar";
 import SasminSideNavbar from "@/components/SasminSideNavbar";
 import ManagerSideNavbar from "@/components/ManagerSideNavbar";
 
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -37,15 +36,18 @@ export default function RootLayout({
         {/* sidebar */}
         {/* <p className="border">Sidebar</p> */}
 
-        <CashiorSideNavbar/>
+
+        {/* <CashiorSideNavbar /> */}
         {/* <SasminSideNavbar/> */}
-        {/* <ManagerSideNavbar/> */}
 
         {/* <CashiorSideNavbar/> */}
         {/* <SasminSideNavbar/> */}
-       
 
-     
+        {/* <ManagerSideNavbar/> */}
+        <BmanagerSideNavbar/>
+        {/* <CashiorSideNavbar/> */}
+        {/* <SasminSideNavbar/> */}
+
         {/* main page */}
         <div className="p-8 w-full">{children}</div>
       </body>

@@ -24,32 +24,26 @@ import { CardContent } from "@/components/Card";
 import axios from 'axios';
 
 const formSchema = z.object({
-  itemName: z.string(),
-  itemCode: z.string(),
-  quantity: z.string(),
-  supply: z.string(),
-  date: z.string(),
-  unitPrice: z.string(),
-  sellPrice: z.string(),
+  branchName: z.string(),
+  branchAddress: z.string(),
+  locatedCity: z.string(),
+  branchPhone: z.string(),
 });
 
 export default function Home() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      itemName: "",
-      itemCode: "",
-      quantity: "",
-      supply: "",
-      date: "",
-      unitPrice: "",
-      sellPrice: "",
+      branchName: "",
+      branchAddress: "",
+      locatedCity: "",
+      branchPhone: "",
     },
   });
 
   const handleSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const response = await axios.post('http://localhost:3002/book', values);
+      const response = await axios.post('http://localhost:3000/branches', values);
       console.log('Book created:', response.data);
     } catch (error) {
       console.error('Error creating book:', error);
@@ -82,7 +76,7 @@ export default function Home() {
               >
                 <FormField
                   control={form.control}
-                  name="itemName"
+                  name="branchName"
                   render={({ field }) => {
                     return (
                       <FormItem>
@@ -97,7 +91,7 @@ export default function Home() {
                 />
                 <FormField
                   control={form.control}
-                  name="itemCode"
+                  name="branchAddress"
                   render={({ field }) => {
                     return (
                       <FormItem>
@@ -112,7 +106,7 @@ export default function Home() {
                 />
                 <FormField
                   control={form.control}
-                  name="quantity"
+                  name="locatedCity"
                   render={({ field }) => {
                     return (
                       <FormItem>
@@ -127,58 +121,13 @@ export default function Home() {
                 />
                 <FormField
                   control={form.control}
-                  name="supply"
+                  name="branchPhone"
                   render={({ field }) => {
                     return (
                       <FormItem>
                         <FormLabel className="font-bold" >Supply</FormLabel>
                         <FormControl>
                           <Input placeholder="Supply" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    );
-                  }}
-                />
-                <FormField
-                  control={form.control}
-                  name="date"
-                  render={({ field }) => {
-                    return (
-                      <FormItem>
-                        <FormLabel className="font-bold" >Date</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Date" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    );
-                  }}
-                />
-                <FormField
-                  control={form.control}
-                  name="unitPrice"
-                  render={({ field }) => {
-                    return (
-                      <FormItem>
-                        <FormLabel className="font-bold">Unit Price</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Unit Price" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    );
-                  }}
-                />
-                <FormField
-                  control={form.control}
-                  name="sellPrice"
-                  render={({ field }) => {
-                    return (
-                      <FormItem>
-                        <FormLabel className="font-bold">Sell Price</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Sell Price" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
