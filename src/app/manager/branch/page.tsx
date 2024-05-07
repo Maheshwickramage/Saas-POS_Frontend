@@ -24,9 +24,9 @@ import { CardContent } from "@/components/Card";
 
 const formSchema = z.object({
   name: z.string(),
-  email: z.string(),
-  dob: z.number(),
   address: z.string(),
+  // dob: z.number(),
+  phoneNumber: z.string(),
   
 });
 
@@ -35,16 +35,35 @@ export default function Home() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
-      email: "",
-      dob: 0,
+      // dob: 0,
       address: "",
+      phoneNumber: "",
       
     },
   });
 
-  const handleSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log({ values });
+  const handleSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      const response = await fetch('/api/branches/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+  
+      // Handle success
+      console.log('Branch created successfully');
+    } catch (error) {
+      // Handle errors
+      console.error('Failed to create branch', error);
+    }
   };
+  
 
   return (
     <div className="flex flex-col gap-5 w-full">
@@ -85,22 +104,7 @@ export default function Home() {
                     );
                   }}
                 />
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => {
-                    return (
-                      <FormItem>
-                        <FormLabel className="font-bold" >Email</FormLabel>
-                        <FormControl>
-                          <Input placeholder="your Email" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    );
-                  }}
-                />
-                <FormField
+                {/* <FormField
                   control={form.control}
                   name="dob"
                   render={({ field }) => {
@@ -114,7 +118,7 @@ export default function Home() {
                       </FormItem>
                     );
                   }}
-                />
+                /> */}
                 <FormField
                   control={form.control}
                   name="address"
@@ -124,6 +128,21 @@ export default function Home() {
                         <FormLabel className="font-bold" >Address</FormLabel>
                         <FormControl>
                           <Input placeholder="your Address" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    );
+                  }}
+                />
+                <FormField
+                  control={form.control}
+                  name="phoneNumber"
+                  render={({ field }) => {
+                    return (
+                      <FormItem>
+                        <FormLabel className="font-bold" >Phone number</FormLabel>
+                        <FormControl>
+                          <Input placeholder="your phone number" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
